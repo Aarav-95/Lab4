@@ -1,25 +1,33 @@
+---------------------
+-- Lab Session: 205
+-- Team Number: 24
+-- Group Names: Aarav Patel, Aryan Tiwari
+---------------------
 library ieee;
 use ieee.std_logic_1164.all;
 
-
+-- Entity declaration for pb filters (inputs and outputs)
 entity PB_filters is port (
 	clkin				: in std_logic;
 	rst_n				: in std_logic;
-	rst_n_filtered	: out std_logic;
+	rst_n_filtered			: out std_logic;
  	pb_n				: in  std_logic_vector (3 downto 0);
-	pb_n_filtered	: out	std_logic_vector(3 downto 0)							 
+	pb_n_filtered			: out std_logic_vector(3 downto 0)							 
 	); 
 end PB_filters;
 
+-- Architecture declaration
 architecture ckt of PB_filters is
-
-	Signal sreg0, sreg1, sreg2, sreg3, sreg4	: std_logic_vector(3 downto 0);
+	-- Signals defined for process
+	Signal sreg0, sreg1, sreg2, sreg3, sreg4 : std_logic_vector(3 downto 0);
 
 BEGIN
 
+-- Behavioural VHDL code where sensitivity list includes clkin (change in clkin will activate process)
 process (clkin) is
 
 begin
+	-- if clkin has rising edge, then the following program will run only
 	if (rising_edge(clkin)) then
 	
 		
@@ -31,7 +39,7 @@ begin
 		sreg0(3 downto 0) <= sreg0(2 downto 0) & pb_n(0);
 				
 		
-	end if;
+	end if; -- end of if statement
 	
 		rst_n_filtered   <= sreg4(3) OR sreg4(2) OR sreg4(1);
 		
