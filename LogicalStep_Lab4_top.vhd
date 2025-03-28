@@ -129,22 +129,31 @@ ARCHITECTURE SimpleCircuit OF LogicalStep_Lab4_top IS
 	
 BEGIN
 ----------------------------------------------------------------------------------------------------
--- Filters push buttons
 INST0: pb_filters		port map (clkin_50, rst_n, rst_n_filtered, pb_n, pb_n_filtered);
+	
+-- Inverts push buttons from active low to active high
 INST1: pb_inverters		port map (rst_n_filtered, rst, pb_n_filtered, pb);
+	
+-- Each synchronizes inputs for rst, push buttons 1 and 0, and switch 0 (mode control)
 INST2: synchronizer     	port map (clkin_50,'0', rst, synch_rst);
 INST3: synchronizer     	port map (clkin_50, synch_rst, pb(1), synch_pb(1));	
 INST4: synchronizer     	port map (clkin_50, synch_rst, pb(0), synch_pb(0));	
 INST5: synchronizer		port map (clkin_50, synch_rst, sw(0), mode_control);
 INST6: clock_generator 		port map (sim_mode, synch_rst, clkin_50, sm_clken, blink_sig);
+	
+--  Holding Register port map for both EW and NS directions
 INST7: holding_register 	port map (clkin_50, synch_rst, EW_register_clear, synch_pb(1), EW_pedestrian_crossing);
 INST8: holding_register 	port map (clkin_50, synch_rst, NS_register_clear, synch_pb(0), NS_pedestrian_crossing);
+
+-- Displays the digits using the NS and EW traffic light display signals
 digit_display: segment7_mux 	port map(clkin_50,  NS_traffic_light_display, EW_traffic_light_display, seg7_data, seg7_char2, seg7_char1);
+
+-- Port map for state machine to indicate which state the Moore machine is in and what to display as a result
 Traffic_Light: state_machine 	port map(clkin_50, synch_rst, blink_sig, EW_pedestrian_crossing, NS_pedestrian_crossing, mode_control, sm_clken, 
 					 EW_register_clear, NS_register_clear, leds(2), leds(0), leds(7 downto 4), EW_traffic_light_display, NS_traffic_light_display);
 	
 	
-
+-- Maps the leds to the specific output of direction
 leds(3) <= EW_pedestrian_crossing;
 leds(1) <= NS_pedestrian_crossing;
 
