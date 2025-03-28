@@ -1,3 +1,8 @@
+---------------------
+-- Lab Session: 205
+-- Team Number: 24
+-- Group Names: Aarav Patel, Aryan Tiwari
+---------------------
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
