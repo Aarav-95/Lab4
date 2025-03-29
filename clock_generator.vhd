@@ -16,11 +16,11 @@ entity Clock_generator is
 
 	port
 	(
-		 sim_mode			: in boolean;	-- used to select the clocking frequency for the output signals "sm_clken" and "blink"
-		 reset				: in std_logic;
-       		 clkin      			: in  std_logic; -- input used for counter and register clocking
-		 sm_clken			: out	std_logic; -- output used to enbl the sm to advance by 1 clk.
-		 blink		  		: out std_logic  -- output used for blink signal (1/4 the rate of the sm_clken)
+		 sim_mode		: in boolean;	-- used to select the clocking frequency for the output signals "sm_clken" and "blink"
+		 reset			: in std_logic;
+       		 clkin      		: in  std_logic; -- input used for counter and register clocking
+		 sm_clken		: out	std_logic; -- output used to enbl the sm to advance by 1 clk.
+		 blink	  		: out std_logic  -- output used for blink signal (1/4 the rate of the sm_clken)
 	);
 
 end entity;
@@ -69,7 +69,8 @@ clk_extender: process (clkin)
 				clk_reg_extend(1 downto 0) 	<= "00";
 				blink_sig 			<= '0';
 			elsif(sim_mode) then
-				 clk_reg_extend(1 downto 0) 	<= clk_reg_extend(0) & sim_clk_enbl;-- clock register input signal used for simulations
+				-- clock register input signal used for simulations
+				 clk_reg_extend(1 downto 0) 	<= clk_reg_extend(0) & sim_clk_enbl;
 				 blink_sig 		 	<= sim_clk_blink; -- blink signal input used for blinking in simulations
 			else 
 				-- clock register input signal used for 0.7Hz clock enbl for LogicalStep Board downloads
