@@ -1,12 +1,17 @@
+---------------------
+-- Lab Session: 205
+-- Team Number: 24
+-- Group Names: Aarav Patel, Aryan Tiwari
+---------------------
 library ieee;
 use ieee.std_logic_1164.all;
 
 -- defining input and output signals for synchronizer
 entity synchronizer is port (
 
-			clk			: in std_logic;
+			clk		: in std_logic;
 			reset		: in std_logic;
-			din			: in std_logic;
+			din		: in std_logic;
 			dout		: out std_logic
   );
  end synchronizer;
@@ -14,7 +19,7 @@ entity synchronizer is port (
 -- defining architecture for synchronizer 
 architecture circuit of synchronizer is
 
-	Signal sreg				: std_logic_vector(1 downto 0);
+	Signal sreg			: std_logic_vector(1 downto 0);
 
 BEGIN
 
