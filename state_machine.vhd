@@ -11,13 +11,13 @@ use ieee.numeric_std.all;
 -- declaring input and output signals of state machine
 Entity State_Machine IS Port
 (
-	clk_input, reset, blink_sig									: IN std_logic;
+	clk_input, reset, blink_sig				: IN std_logic;
 	EW_pedestrian_crossing, NS_pedestrian_crossing 		: IN std_logic;
-	mode_control, sm_clken											: IN std_logic;
-	EW_register_clear, NS_register_clear						: OUT std_logic;
+	mode_control, sm_clken					: IN std_logic;
+	EW_register_clear, NS_register_clear			: OUT std_logic;
 	EW_crossing_light_display, NS_crossing_light_display	: OUT std_logic;
-	state_number														: OUT std_logic_vector(3 downto 0);
-	EW_DOUT, NS_DOUT													: OUT std_logic_vector(6 downto 0)
+	state_number						: OUT std_logic_vector(3 downto 0);
+	EW_DOUT, NS_DOUT					: OUT std_logic_vector(6 downto 0)
 );
 END ENTITY;
 
