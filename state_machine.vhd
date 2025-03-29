@@ -183,51 +183,51 @@ BEGIN
 			EW_DOUT <= "0000001";
 			state_number <= "0111";
 			
-			WHEN S8 =>	
+	WHEN S8 =>	
 			-- incorporating blink_sig for flashing green	
 			NS_DOUT <= "0000001";
 			EW_DOUT <= "000" & blink_sig & "000";
 			NS_register_clear <= '0';
 			state_number <= "1000";
 			
-			WHEN S9 =>
+	WHEN S9 =>
 			-- incorporating blink_sig for flashing green		
 			NS_DOUT <= "0000001";
 			EW_DOUT <= "000" & blink_sig & "000";
 			NS_register_clear <= '0';
 			state_number <= "1001";
 			
-			WHEN S10 =>		
+	WHEN S10 =>		
 			NS_DOUT <= "0000001";
 			EW_DOUT <= "0001000";
 			EW_crossing_light_display <= '1';
 			state_number <= "1010";
 			
-			WHEN S11 =>		
+	WHEN S11 =>		
 			NS_DOUT <= "0000001";
 			EW_DOUT <= "0001000";
 			EW_crossing_light_display <= '1';
 			state_number <= "1011";
 			
-			WHEN S12 =>		
+	WHEN S12 =>		
 			NS_DOUT <= "0000001";
 			EW_DOUT <= "0001000";
 			EW_crossing_light_display <= '1';
 			state_number <= "1100";
 			
-			WHEN S13 =>		
+	WHEN S13 =>		
 			NS_DOUT <= "0000001";
 			EW_DOUT <= "0001000";
 			EW_crossing_light_display <= '1';
 			state_number <= "1101";
 			
-			WHEN S14 =>		
+	WHEN S14 =>		
 			NS_DOUT <= "0000001";
 			EW_DOUT <= "1000000";
 			EW_register_clear <= '1';
 			state_number <= "1110";
 			
-			WHEN S15 =>	
+	WHEN S15 =>	
 			-- checking for offline mode	
 			IF (mode_control = '1') THEN
 				-- incorporating blink_sig for flashing red and yellow
